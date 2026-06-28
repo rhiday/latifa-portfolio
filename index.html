@@ -63,6 +63,12 @@
   }
   .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--ink); align-items: center; }
+  .nav-toggle svg { width: 24px; height: 24px; }
+  .nav-toggle .ic-close { display: none; }
+  nav.open .nav-toggle .ic-open { display: none; }
+  nav.open .nav-toggle .ic-close { display: inline; }
+
   /* ---------- buttons ---------- */
   .btn {
     font-size: 14.5px; font-weight: 500; padding: 13px 22px; border-radius: 100px;
@@ -253,6 +259,24 @@
     .home-gallery { grid-template-columns: repeat(2, 1fr); }
     .home-gallery figure.feature { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16/10; }
   }
+  @media (max-width: 700px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0; align-items: stretch;
+      background: var(--paper); border-bottom: 1px solid var(--line);
+      padding: 6px 28px 16px; display: none;
+      box-shadow: 0 16px 30px -22px rgba(28,25,22,.35);
+    }
+    nav.open .nav-links { display: flex; }
+    .nav-links a { padding: 13px 0; font-size: 15px; color: var(--ink); border-bottom: 1px solid var(--line); }
+    .nav-links a:last-child { border-bottom: none; }
+    .nav-links a::after { display: none; }
+    header.hero { padding: 84px 0 64px; }
+    section { padding: 64px 0; }
+    .contact { padding: 80px 0; }
+    header.cv-head { padding: 52px 0 36px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; }
@@ -271,6 +295,10 @@
       <a data-nav="cv">CV</a>
       <a data-nav="contact">Contact</a>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+      <svg class="ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -557,6 +585,11 @@
 
 <script>
   const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
   addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 12));
 
   // ---- reveal on scroll ----
@@ -612,6 +645,8 @@
   }
   navItems.forEach(a => a.addEventListener('click', (e) => {
     const key = a.dataset.nav;
+    nav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
     if (key === location.hash.slice(1)) { e.preventDefault(); route(); } // re-trigger if same
     location.hash = key === 'home' ? '' : key;
   }));
