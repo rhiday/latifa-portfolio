@@ -125,6 +125,14 @@
   .proj-card.placeholder .proj-info p { font-style: italic; }
 
   /* gallery */
+  .home-gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-auto-rows: 1fr; gap: 14px; }
+  .home-gallery figure { margin: 0; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+    background: linear-gradient(150deg, var(--paper-3), var(--paper-2)); display: flex; align-items: center; justify-content: center; position: relative; transition: transform .3s var(--ease); }
+  .home-gallery figure:hover { transform: scale(1.02); }
+  .home-gallery figure.feature { grid-column: 1; grid-row: 1 / span 2; aspect-ratio: auto; }
+  .home-gallery img { width: 100%; height: 100%; object-fit: cover; }
+  .home-gallery .ph { font-family: "Spline Sans Mono", monospace; font-size: 10.5px; color: var(--ink-soft); }
+
   .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   .gallery-grid figure { margin: 0; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
     background: linear-gradient(150deg, var(--paper-3), var(--paper-2)); display: flex; align-items: center; justify-content: center;
@@ -238,6 +246,8 @@
     .cv-grid { grid-template-columns: 1fr; gap: 40px; }
     .proj-grid { grid-template-columns: 1fr; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .home-gallery { grid-template-columns: repeat(2, 1fr); }
+    .home-gallery figure.feature { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16/10; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; scroll-behavior: auto; }
@@ -252,6 +262,7 @@
     <a class="brand" data-nav="home">Latifa Zaman<span>.</span></a>
     <div class="nav-links">
       <a data-nav="work">Work</a>
+      <a data-nav="portfolio">Portfolio</a>
       <a data-nav="about">About</a>
       <a data-nav="cv">CV</a>
       <a data-nav="contact">Contact</a>
@@ -314,7 +325,7 @@
         </article>
       </div>
       <div class="work-cta reveal">
-        <a class="btn btn-ghost" data-nav="projects">View all projects →</a>
+        <a class="btn btn-ghost" data-nav="portfolio">View full portfolio →</a>
       </div>
     </div>
   </section>
@@ -334,6 +345,22 @@
           <h4>Focus areas</h4>
           <ul><li>Architecture &amp; interior design</li><li>Spatial &amp; XR design (AR / VR)</li><li>3D modeling &amp; visualization</li></ul>
         </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery-home">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow">Gallery</span><h2>A few favourites</h2></div>
+        <a class="btn btn-ghost" data-nav="portfolio">See all →</a>
+      </div>
+      <div class="home-gallery">
+        <figure class="feature reveal"><span class="ph">add favourite photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
       </div>
     </div>
   </section>
@@ -366,7 +393,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download CV (PDF)
           </a>
-          <a class="btn btn-ghost" data-nav="work">View portfolio</a>
+          <a class="btn btn-ghost" data-nav="portfolio">View portfolio</a>
         </div>
       </div>
       <aside class="contact-card">
@@ -464,7 +491,7 @@
   <section>
     <div class="wrap">
       <div class="sec-head reveal">
-        <div><span class="eyebrow">Projects</span><h2>Everything, in one place</h2></div>
+        <div><span class="eyebrow">Portfolio</span><h2>Everything, in one place</h2></div>
         <a class="btn btn-ghost" data-nav="work">← Back</a>
       </div>
 
@@ -561,8 +588,8 @@
     if (hash === 'cv') {
       showView('cv'); setActiveNav('cv');
       window.scrollTo({ top: 0, behavior: 'auto' });
-    } else if (hash === 'projects') {
-      showView('projects'); setActiveNav('projects');
+    } else if (hash === 'portfolio') {
+      showView('projects'); setActiveNav('portfolio');
       window.scrollTo({ top: 0, behavior: 'auto' });
     } else if (HOME_SECTIONS.includes(hash)) {
       showView('home'); setActiveNav(hash);
