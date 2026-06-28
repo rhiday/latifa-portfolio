@@ -102,6 +102,37 @@
 
   /* work */
   .work-grid { display: grid; gap: 26px; }
+  .work-cta { text-align: center; margin-top: 44px; }
+
+  /* projects page */
+  .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .proj-card {
+    border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--paper-2);
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease); cursor: default;
+  }
+  .proj-card:hover { transform: translateY(-5px); box-shadow: 0 20px 44px -26px rgba(28,25,22,.34); }
+  .proj-thumb { position: relative; aspect-ratio: 4/3; overflow: hidden;
+    background: linear-gradient(150deg, var(--paper-3), var(--paper-2)); display: flex; align-items: center; justify-content: center; }
+  .proj-thumb .visual-motif div { position:absolute; border:1.5px solid var(--accent-soft); border-radius:12px; }
+  .proj-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .proj-thumb .visual-tag { position: relative; z-index: 2; font-family: "Spline Sans Mono", monospace; font-size: 11px; color: var(--ink-soft); background: var(--paper); padding: 5px 11px; border-radius: 100px; border: 1px solid var(--line); }
+  .proj-info { padding: 18px 20px 22px; }
+  .proj-info .kind { font-family: "Spline Sans Mono", monospace; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
+  .proj-info h3 { font-family: "Fraunces", serif; font-weight: 500; font-size: 19px; letter-spacing: -.01em; margin: 8px 0 6px; }
+  .proj-info p { color: var(--ink-soft); font-size: 14px; margin: 0; }
+  .proj-card.placeholder { border-style: dashed; background: transparent; }
+  .proj-card.placeholder .proj-thumb { background: transparent; }
+  .proj-card.placeholder .proj-info p { font-style: italic; }
+
+  /* gallery */
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .gallery-grid figure { margin: 0; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+    background: linear-gradient(150deg, var(--paper-3), var(--paper-2)); display: flex; align-items: center; justify-content: center;
+    position: relative; transition: transform .3s var(--ease); }
+  .gallery-grid figure:hover { transform: scale(1.02); }
+  .gallery-grid figure.tall { aspect-ratio: auto; grid-row: span 2; }
+  .gallery-grid img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-grid .ph { font-family: "Spline Sans Mono", monospace; font-size: 10.5px; color: var(--ink-soft); }
   .project {
     display: grid; grid-template-columns: 1.1fr 1fr; border: 1px solid var(--line);
     border-radius: 20px; overflow: hidden; background: var(--paper-2);
@@ -205,6 +236,8 @@
     .about-grid { grid-template-columns: 1fr; gap: 36px; }
     .cv-head .head-inner { grid-template-columns: 1fr; gap: 28px; }
     .cv-grid { grid-template-columns: 1fr; gap: 40px; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; scroll-behavior: auto; }
@@ -279,6 +312,9 @@
             <div class="project-meta"><span class="chip">Interaction design</span><span class="chip">Figma</span><span class="chip">Motion</span></div>
           </div>
         </article>
+      </div>
+      <div class="work-cta reveal">
+        <a class="btn btn-ghost" data-nav="projects">View all projects →</a>
       </div>
     </div>
   </section>
@@ -423,6 +459,61 @@
   </div>
 </main>
 
+<!-- ======================= PROJECTS VIEW ======================= -->
+<main id="view-projects" class="view">
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><span class="eyebrow">Projects</span><h2>Everything, in one place</h2></div>
+        <a class="btn btn-ghost" data-nav="work">← Back</a>
+      </div>
+
+      <div class="proj-grid">
+        <article class="proj-card reveal">
+          <div class="proj-thumb"><div class="visual-motif"><div class="m-a"></div><div class="m-b"></div></div><span class="visual-tag">add image</span></div>
+          <div class="proj-info"><span class="kind">XR · Metropolia Expo</span><h3>Immersive spatial experience</h3><p>Interactive XR concept exploring depth, presence, and movement.</p></div>
+        </article>
+        <article class="proj-card reveal">
+          <div class="proj-thumb"><div class="visual-motif"><div class="m-a"></div><div class="m-b"></div></div><span class="visual-tag">add image</span></div>
+          <div class="proj-info"><span class="kind">Architecture · Riyadh</span><h3>Interior &amp; spatial design</h3><p>Interior solutions from concept and material planning to site delivery.</p></div>
+        </article>
+        <article class="proj-card reveal">
+          <div class="proj-thumb"><div class="visual-motif"><div class="m-a"></div><div class="m-b"></div></div><span class="visual-tag">add image</span></div>
+          <div class="proj-info"><span class="kind">AR · Interaction</span><h3>Augmented interaction study</h3><p>Layering digital information onto the physical world.</p></div>
+        </article>
+        <article class="proj-card reveal">
+          <div class="proj-thumb"><div class="visual-motif"><div class="m-a"></div><div class="m-b"></div></div><span class="visual-tag">add image</span></div>
+          <div class="proj-info"><span class="kind">Architecture · Built work</span><h3>Construction documentation</h3><p>Drawings, shop drawings, and as-built sets across systems.</p></div>
+        </article>
+        <article class="proj-card placeholder reveal">
+          <div class="proj-thumb"><span class="visual-tag">add image</span></div>
+          <div class="proj-info"><span class="kind">Add project</span><h3>Your next project</h3><p>Title, one-line description, and an image.</p></div>
+        </article>
+        <article class="proj-card placeholder reveal">
+          <div class="proj-thumb"><span class="visual-tag">add image</span></div>
+          <div class="proj-info"><span class="kind">Add project</span><h3>Your next project</h3><p>Title, one-line description, and an image.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><span class="eyebrow">Gallery</span><h2>Selected visuals</h2></div></div>
+      <div class="gallery-grid">
+        <figure class="reveal tall"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal tall"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+        <figure class="reveal"><span class="ph">add photo</span></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
 <footer class="wrap">
   <span>Latifa Zaman Tanzim — Helsinki</span>
   <span>© 2026</span>
@@ -454,12 +545,13 @@
 
   // ---- simple hash router ----
   const HOME_SECTIONS = ['work','about','contact'];
-  const views = { home: document.getElementById('view-home'), cv: document.getElementById('view-cv') };
+  const views = { home: document.getElementById('view-home'), cv: document.getElementById('view-cv'), projects: document.getElementById('view-projects') };
   const navItems = [...document.querySelectorAll('[data-nav]')];
 
   function showView(name){
     views.home.classList.toggle('active', name === 'home');
     views.cv.classList.toggle('active', name === 'cv');
+    views.projects.classList.toggle('active', name === 'projects');
   }
   function setActiveNav(key){
     navItems.forEach(a => a.classList.toggle('active', a.dataset.nav === key));
@@ -468,6 +560,9 @@
     const hash = (location.hash || '#home').slice(1);
     if (hash === 'cv') {
       showView('cv'); setActiveNav('cv');
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    } else if (hash === 'projects') {
+      showView('projects'); setActiveNav('projects');
       window.scrollTo({ top: 0, behavior: 'auto' });
     } else if (HOME_SECTIONS.includes(hash)) {
       showView('home'); setActiveNav(hash);
